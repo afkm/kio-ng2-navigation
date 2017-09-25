@@ -10,7 +10,7 @@ const shortenLocale = (locale:string):string => locale.split('_')[0]
 @Component({
   selector: 'language-selector',
   templateUrl: './language-selector.component.html',
-  styleUrls: ['./language-selector.component.scss'],
+  styleUrls: ['./language-selector.component.css'],
   encapsulation: ViewEncapsulation.None
 })
 export class LanguageSelectorComponent implements OnDestroy {

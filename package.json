@@ -33,6 +33,7 @@
     "@angular/core": "^4.2.3",
     "@angular/platform-browser": "^4.2.3",
     "@angular/platform-browser-dynamic": "^4.2.3",
+    "@angular/forms": "^4.2.3",
     "kio-ng2-ctn": "^0.0.0",
     "kio-ng2-uiux": "^0.0.1",
     "kio-ng2-data": "^0.0.1",
@@ -63,6 +64,7 @@
     "kio-ng2-data": "github:afkm/kio-ng2-data",
     "kio-ng2-globals": "github:afkm/kio-ng2-globals",
     "kio-ng2-i18n": "github:afkm/kio-ng2-i18n",
+    "kio-ng2-image": "github:afkm/kio-ng2-image",
     "kio-ng2-newsletter": "github:afkm/kio-ng2-newsletter",
     "kio-ng2-scrolling": "github:afkm/kio-ng2-scrolling",
     "kio-ng2-sidebar": "github:afkm/kio-ng2-sidebar",
@@ -79,5 +81,8 @@
     "tslint": "^5.7.0",
     "typescript": "^2.3.4",
     "zone.js": "^0.8.17"
+  },
+  "dependencies": {
+    "kio-ng2-lightbox": "github:afkm/kio-ng2-lightbox"
   }
 }

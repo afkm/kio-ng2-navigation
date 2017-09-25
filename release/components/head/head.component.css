@@ -1,0 +1,293 @@
+/* =====================
+Layout and Grid
+===================== */
+/* =====================
+Buttons
+===================== */
+component-router {
+  position: relative; }
+  component-router[class*="chapter-"]:not(.chapter-0):not(.chapter-8) {
+    display: block;
+    padding-bottom: 3.125rem;
+    background-color: #927641; }
+    @media only screen and (min-width: 46.25em) {
+      component-router[class*="chapter-"]:not(.chapter-0):not(.chapter-8) {
+        padding-bottom: 6.25rem; } }
+    component-router[class*="chapter-"]:not(.chapter-0):not(.chapter-8) > div:last-child {
+      position: absolute;
+      bottom: 0; }
+  component-router.chapter-0 {
+    background-color: #EB0017 !important; }
+    component-router.chapter-0 .audio-player,
+    component-router.chapter-0 .chapter-cover,
+    component-router.chapter-0 .gallery-grid,
+    component-router.chapter-0 .headline,
+    component-router.chapter-0 .labeled-image.is-not-stripped,
+    component-router.chapter-0 .labeled-image-with-zoom.is-not-stripped,
+    component-router.chapter-0 .meta-box,
+    component-router.chapter-0 .meta-image.is-not-stripped,
+    component-router.chapter-0 .meta-images,
+    component-router.chapter-0 .newsticker,
+    component-router.chapter-0 .quote,
+    component-router.chapter-0 .section-headline,
+    component-router.chapter-0 .single-column,
+    component-router.chapter-0 .single-column-collapsible,
+    component-router.chapter-0 .two-columns,
+    component-router.chapter-0 .two-columns-and-image,
+    component-router.chapter-0 .video {
+      background-color: #EB0017; }
+    component-router.chapter-0 .audio-player__progress .mask {
+      background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20220%20220%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%23EB0017%3B%7D%3C/style%3E%3C/defs%3E%3Ctitle%3EElement%201%3C/title%3E%3Cg%20id%3D%22Ebene_2%22%20data-name%3D%22Ebene%202%22%3E%3Cg%20id%3D%22Ebene_1-2%22%20data-name%3D%22Ebene%201%22%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M109.91%2C0a109.9%2C109.9%2C0%2C1%2C1%2C0%2C219.81h0A109.91%2C109.91%2C0%2C0%2C1%2C0%2C109.9V220H220V0Z%22/%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M109.91%2C0H0V109.9A109.9%2C109.9%2C0%2C0%2C1%2C109.91%2C0Z%22/%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M109.91%2C200.44h0A90.54%2C90.54%2C0%2C1%2C0%2C19.37%2C109.9%2C90.54%2C90.54%2C0%2C0%2C0%2C109.91%2C200.45Z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      background-repeat: no-repeat; }
+    component-router.chapter-0 .section-headline {
+      background-image: url(/assets/images/pattern-2.png);
+      background-image: url(/assets/images/pattern-3.png); }
+  component-router.chapter-1 {
+    background-color: #EB0017 !important; }
+    component-router.chapter-1 .audio-player,
+    component-router.chapter-1 .chapter-cover,
+    component-router.chapter-1 .gallery-grid,
+    component-router.chapter-1 .headline,
+    component-router.chapter-1 .labeled-image.is-not-stripped,
+    component-router.chapter-1 .labeled-image-with-zoom.is-not-stripped,
+    component-router.chapter-1 .meta-box,
+    component-router.chapter-1 .meta-image.is-not-stripped,
+    component-router.chapter-1 .meta-images,
+    component-router.chapter-1 .newsticker,
+    component-router.chapter-1 .quote,
+    component-router.chapter-1 .section-headline,
+    component-router.chapter-1 .single-column,
+    component-router.chapter-1 .single-column-collapsible,
+    component-router.chapter-1 .two-columns,
+    component-router.chapter-1 .two-columns-and-image,
+    component-router.chapter-1 .video {
+      background-color: #EB0017; }
+    component-router.chapter-1 .audio-player__progress .mask {
+      background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20220%20220%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%23EB0017%3B%7D%3C/style%3E%3C/defs%3E%3Ctitle%3EElement%201%3C/title%3E%3Cg%20id%3D%22Ebene_2%22%20data-name%3D%22Ebene%202%22%3E%3Cg%20id%3D%22Ebene_1-2%22%20data-name%3D%22Ebene%201%22%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M109.91%2C0a109.9%2C109.9%2C0%2C1%2C1%2C0%2C219.81h0A109.91%2C109.91%2C0%2C0%2C1%2C0%2C109.9V220H220V0Z%22/%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M109.91%2C0H0V109.9A109.9%2C109.9%2C0%2C0%2C1%2C109.91%2C0Z%22/%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M109.91%2C200.44h0A90.54%2C90.54%2C0%2C1%2C0%2C19.37%2C109.9%2C90.54%2C90.54%2C0%2C0%2C0%2C109.91%2C200.45Z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      background-repeat: no-repeat; }
+  component-router.chapter-2 {
+    background-color: #927641 !important; }
+    component-router.chapter-2 .audio-player,
+    component-router.chapter-2 .chapter-cover,
+    component-router.chapter-2 .gallery-grid,
+    component-router.chapter-2 .headline,
+    component-router.chapter-2 .labeled-image.is-not-stripped,
+    component-router.chapter-2 .labeled-image-with-zoom.is-not-stripped,
+    component-router.chapter-2 .meta-box,
+    component-router.chapter-2 .meta-image.is-not-stripped,
+    component-router.chapter-2 .meta-images,
+    component-router.chapter-2 .newsticker,
+    component-router.chapter-2 .quote,
+    component-router.chapter-2 .section-headline,
+    component-router.chapter-2 .single-column,
+    component-router.chapter-2 .single-column-collapsible,
+    component-router.chapter-2 .two-columns,
+    component-router.chapter-2 .two-columns-and-image,
+    component-router.chapter-2 .video {
+      background-color: #927641; }
+    component-router.chapter-2 .audio-player__progress .mask {
+      background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20220%20220%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%23927641%3B%7D%3C/style%3E%3C/defs%3E%3Ctitle%3EElement%201%3C/title%3E%3Cg%20id%3D%22Ebene_2%22%20data-name%3D%22Ebene%202%22%3E%3Cg%20id%3D%22Ebene_1-2%22%20data-name%3D%22Ebene%201%22%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M109.91%2C0a109.9%2C109.9%2C0%2C1%2C1%2C0%2C219.81h0A109.91%2C109.91%2C0%2C0%2C1%2C0%2C109.9V220H220V0Z%22/%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M109.91%2C0H0V109.9A109.9%2C109.9%2C0%2C0%2C1%2C109.91%2C0Z%22/%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M109.91%2C200.44h0A90.54%2C90.54%2C0%2C1%2C0%2C19.37%2C109.9%2C90.54%2C90.54%2C0%2C0%2C0%2C109.91%2C200.45Z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      background-repeat: no-repeat; }
+    component-router.chapter-2 .section-headline {
+      background-image: url(/assets/images/pattern-2.png); }
+  component-router.chapter-3 {
+    background-color: #E7C361 !important; }
+    component-router.chapter-3 .audio-player,
+    component-router.chapter-3 .chapter-cover,
+    component-router.chapter-3 .gallery-grid,
+    component-router.chapter-3 .headline,
+    component-router.chapter-3 .labeled-image.is-not-stripped,
+    component-router.chapter-3 .labeled-image-with-zoom.is-not-stripped,
+    component-router.chapter-3 .meta-box,
+    component-router.chapter-3 .meta-image.is-not-stripped,
+    component-router.chapter-3 .meta-images,
+    component-router.chapter-3 .newsticker,
+    component-router.chapter-3 .quote,
+    component-router.chapter-3 .section-headline,
+    component-router.chapter-3 .single-column,
+    component-router.chapter-3 .single-column-collapsible,
+    component-router.chapter-3 .two-columns,
+    component-router.chapter-3 .two-columns-and-image,
+    component-router.chapter-3 .video {
+      background-color: #E7C361; }
+    component-router.chapter-3 .audio-player__progress .mask {
+      background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20220%20220%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%23E7C361%3B%7D%3C/style%3E%3C/defs%3E%3Ctitle%3EElement%201%3C/title%3E%3Cg%20id%3D%22Ebene_2%22%20data-name%3D%22Ebene%202%22%3E%3Cg%20id%3D%22Ebene_1-2%22%20data-name%3D%22Ebene%201%22%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M109.91%2C0a109.9%2C109.9%2C0%2C1%2C1%2C0%2C219.81h0A109.91%2C109.91%2C0%2C0%2C1%2C0%2C109.9V220H220V0Z%22/%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M109.91%2C0H0V109.9A109.9%2C109.9%2C0%2C0%2C1%2C109.91%2C0Z%22/%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M109.91%2C200.44h0A90.54%2C90.54%2C0%2C1%2C0%2C19.37%2C109.9%2C90.54%2C90.54%2C0%2C0%2C0%2C109.91%2C200.45Z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      background-repeat: no-repeat; }
+    component-router.chapter-3 .section-headline {
+      background-image: url(/assets/images/pattern-3.png); }
+  component-router.chapter-4 {
+    background-color: #8BB3B3 !important; }
+    component-router.chapter-4 .audio-player,
+    component-router.chapter-4 .chapter-cover,
+    component-router.chapter-4 .gallery-grid,
+    component-router.chapter-4 .headline,
+    component-router.chapter-4 .labeled-image.is-not-stripped,
+    component-router.chapter-4 .labeled-image-with-zoom.is-not-stripped,
+    component-router.chapter-4 .meta-box,
+    component-router.chapter-4 .meta-image.is-not-stripped,
+    component-router.chapter-4 .meta-images,
+    component-router.chapter-4 .newsticker,
+    component-router.chapter-4 .quote,
+    component-router.chapter-4 .section-headline,
+    component-router.chapter-4 .single-column,
+    component-router.chapter-4 .single-column-collapsible,
+    component-router.chapter-4 .two-columns,
+    component-router.chapter-4 .two-columns-and-image,
+    component-router.chapter-4 .video {
+      background-color: #8BB3B3; }
+    component-router.chapter-4 .audio-player__progress .mask {
+      background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20220%20220%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%238BB3B3%3B%7D%3C/style%3E%3C/defs%3E%3Ctitle%3EElement%201%3C/title%3E%3Cg%20id%3D%22Ebene_2%22%20data-name%3D%22Ebene%202%22%3E%3Cg%20id%3D%22Ebene_1-2%22%20data-name%3D%22Ebene%201%22%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M109.91%2C0a109.9%2C109.9%2C0%2C1%2C1%2C0%2C219.81h0A109.91%2C109.91%2C0%2C0%2C1%2C0%2C109.9V220H220V0Z%22/%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M109.91%2C0H0V109.9A109.9%2C109.9%2C0%2C0%2C1%2C109.91%2C0Z%22/%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M109.91%2C200.44h0A90.54%2C90.54%2C0%2C1%2C0%2C19.37%2C109.9%2C90.54%2C90.54%2C0%2C0%2C0%2C109.91%2C200.45Z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      background-repeat: no-repeat; }
+    component-router.chapter-4 .section-headline {
+      background-image: url(/assets/images/pattern-2.png); }
+  component-router.chapter-5 {
+    background-color: #B91F23 !important; }
+    component-router.chapter-5 .audio-player,
+    component-router.chapter-5 .chapter-cover,
+    component-router.chapter-5 .gallery-grid,
+    component-router.chapter-5 .headline,
+    component-router.chapter-5 .labeled-image.is-not-stripped,
+    component-router.chapter-5 .labeled-image-with-zoom.is-not-stripped,
+    component-router.chapter-5 .meta-box,
+    component-router.chapter-5 .meta-image.is-not-stripped,
+    component-router.chapter-5 .meta-images,
+    component-router.chapter-5 .newsticker,
+    component-router.chapter-5 .quote,
+    component-router.chapter-5 .section-headline,
+    component-router.chapter-5 .single-column,
+    component-router.chapter-5 .single-column-collapsible,
+    component-router.chapter-5 .two-columns,
+    component-router.chapter-5 .two-columns-and-image,
+    component-router.chapter-5 .video {
+      background-color: #B91F23; }
+    component-router.chapter-5 .audio-player__progress .mask {
+      background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20220%20220%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%23B91F23%3B%7D%3C/style%3E%3C/defs%3E%3Ctitle%3EElement%201%3C/title%3E%3Cg%20id%3D%22Ebene_2%22%20data-name%3D%22Ebene%202%22%3E%3Cg%20id%3D%22Ebene_1-2%22%20data-name%3D%22Ebene%201%22%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M109.91%2C0a109.9%2C109.9%2C0%2C1%2C1%2C0%2C219.81h0A109.91%2C109.91%2C0%2C0%2C1%2C0%2C109.9V220H220V0Z%22/%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M109.91%2C0H0V109.9A109.9%2C109.9%2C0%2C0%2C1%2C109.91%2C0Z%22/%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M109.91%2C200.44h0A90.54%2C90.54%2C0%2C1%2C0%2C19.37%2C109.9%2C90.54%2C90.54%2C0%2C0%2C0%2C109.91%2C200.45Z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      background-repeat: no-repeat; }
+  component-router.chapter-6 {
+    background-color: #E2895D !important; }
+    component-router.chapter-6 .audio-player,
+    component-router.chapter-6 .chapter-cover,
+    component-router.chapter-6 .gallery-grid,
+    component-router.chapter-6 .headline,
+    component-router.chapter-6 .labeled-image.is-not-stripped,
+    component-router.chapter-6 .labeled-image-with-zoom.is-not-stripped,
+    component-router.chapter-6 .meta-box,
+    component-router.chapter-6 .meta-image.is-not-stripped,
+    component-router.chapter-6 .meta-images,
+    component-router.chapter-6 .newsticker,
+    component-router.chapter-6 .quote,
+    component-router.chapter-6 .section-headline,
+    component-router.chapter-6 .single-column,
+    component-router.chapter-6 .single-column-collapsible,
+    component-router.chapter-6 .two-columns,
+    component-router.chapter-6 .two-columns-and-image,
+    component-router.chapter-6 .video {
+      background-color: #E2895D; }
+    component-router.chapter-6 .audio-player__progress .mask {
+      background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20220%20220%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%23E2895D%3B%7D%3C/style%3E%3C/defs%3E%3Ctitle%3EElement%201%3C/title%3E%3Cg%20id%3D%22Ebene_2%22%20data-name%3D%22Ebene%202%22%3E%3Cg%20id%3D%22Ebene_1-2%22%20data-name%3D%22Ebene%201%22%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M109.91%2C0a109.9%2C109.9%2C0%2C1%2C1%2C0%2C219.81h0A109.91%2C109.91%2C0%2C0%2C1%2C0%2C109.9V220H220V0Z%22/%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M109.91%2C0H0V109.9A109.9%2C109.9%2C0%2C0%2C1%2C109.91%2C0Z%22/%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M109.91%2C200.44h0A90.54%2C90.54%2C0%2C1%2C0%2C19.37%2C109.9%2C90.54%2C90.54%2C0%2C0%2C0%2C109.91%2C200.45Z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      background-repeat: no-repeat; }
+    component-router.chapter-6 .section-headline {
+      background-image: url(/assets/images/pattern-2.png);
+      background-image: url(/assets/images/pattern-3.png); }
+  component-router.chapter-7 {
+    background-color: #006D45 !important; }
+    component-router.chapter-7 .audio-player,
+    component-router.chapter-7 .chapter-cover,
+    component-router.chapter-7 .gallery-grid,
+    component-router.chapter-7 .headline,
+    component-router.chapter-7 .labeled-image.is-not-stripped,
+    component-router.chapter-7 .labeled-image-with-zoom.is-not-stripped,
+    component-router.chapter-7 .meta-box,
+    component-router.chapter-7 .meta-image.is-not-stripped,
+    component-router.chapter-7 .meta-images,
+    component-router.chapter-7 .newsticker,
+    component-router.chapter-7 .quote,
+    component-router.chapter-7 .section-headline,
+    component-router.chapter-7 .single-column,
+    component-router.chapter-7 .single-column-collapsible,
+    component-router.chapter-7 .two-columns,
+    component-router.chapter-7 .two-columns-and-image,
+    component-router.chapter-7 .video {
+      background-color: #006D45; }
+    component-router.chapter-7 .audio-player__progress .mask {
+      background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20220%20220%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%23006D45%3B%7D%3C/style%3E%3C/defs%3E%3Ctitle%3EElement%201%3C/title%3E%3Cg%20id%3D%22Ebene_2%22%20data-name%3D%22Ebene%202%22%3E%3Cg%20id%3D%22Ebene_1-2%22%20data-name%3D%22Ebene%201%22%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M109.91%2C0a109.9%2C109.9%2C0%2C1%2C1%2C0%2C219.81h0A109.91%2C109.91%2C0%2C0%2C1%2C0%2C109.9V220H220V0Z%22/%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M109.91%2C0H0V109.9A109.9%2C109.9%2C0%2C0%2C1%2C109.91%2C0Z%22/%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M109.91%2C200.44h0A90.54%2C90.54%2C0%2C1%2C0%2C19.37%2C109.9%2C90.54%2C90.54%2C0%2C0%2C0%2C109.91%2C200.45Z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      background-repeat: no-repeat; }
+
+.site-header .inner:before,
+.site-header .inner:after {
+  display: table;
+  /* 2 */
+  content: " ";
+  /* 1 */ }
+
+.site-header .inner:after {
+  clear: both; }
+
+@media only screen and (max-width: 46.1875em) {
+  .site-header__tools ui-sharing-dropdown {
+    display: none !important; } }
+
+.site-header .inner {
+  max-width: 83.75rem;
+  margin: 0 auto;
+  padding-right: 0.625rem;
+  padding-left: 0.625rem; }
+
+.site-header__brand {
+  float: left;
+  padding-right: 0.625rem;
+  padding-left: 0.625rem; }
+
+.site-header__tools {
+  float: right;
+  padding-right: 0.625rem;
+  padding-left: 0.625rem; }
+
+.site-header {
+  position: absolute;
+  z-index: 15;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.25rem 0 0; }
+  @media only screen and (min-width: 46.25em) {
+    .site-header {
+      padding: 2.5rem 0 0; } }
+
+.site-header__brand {
+  width: 50%; }
+  .site-header__brand h1 {
+    display: block;
+    margin: 0; }
+  .site-header__brand span {
+    position: absolute;
+    left: -9999em; }
+  .site-header__brand .logo {
+    width: 10.75rem;
+    height: 3.625rem; }
+    .site-header__brand .logo svg {
+      width: 100%;
+      height: 100%; }
+      .site-header__brand .logo svg path:first-child {
+        stroke: #FAF8F0; }
+      .site-header__brand .logo svg path:last-child {
+        fill: #FAF8F0; }
+    @media only screen and (min-width: 46.25em) {
+      .site-header__brand .logo {
+        width: 23.25rem;
+        height: 7.8125rem;
+        line-height: 0; } }
+
+.site-header__tools {
+  display: flex;
+  justify-content: flex-end;
+  width: 33.33333%;
+  margin-right: 16.66667%;
+  padding-right: 0; }
+  @media only screen and (min-width: 46.25em) {
+    .site-header__tools {
+      width: 50%;
+      margin-right: 0; } }
+  @media only screen and (min-width: 46.25em) {
+    .site-header__tools {
+      padding-right: 3.75rem; } }
