@@ -1,0 +1,11 @@
+<nav class="language-selector">
+
+    <ng-container *ngIf="!isUpdating">
+      <ng-container *ngFor="let locale of locales">
+        <ui-button (click)="toggleLocale()" [icon]="'lang-'+shortLocale(locale)" *ngIf="!isCurrentLocale(locale)"></ui-button>
+      </ng-container>
+    </ng-container>
+
+    <div class="spinner" *ngIf="isUpdating" [inlineSVG]="'/assets/images/spinner.svg'"></div>
+
+</nav>

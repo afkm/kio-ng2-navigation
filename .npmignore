@@ -1,0 +1,5 @@
+/scripts
+nodemon.json
+tsconfig.release.json
+tsconfig-ngc.json
+tsconfig-doc.json

@@ -1,0 +1,22 @@
+<header>
+  <form submit="return false;">
+    <div class="form-field">
+      <label for="componentSelection">Select a component</label>
+      <select [(ngModel)]="componentName" name="componentSelection">
+        <option *ngFor="let val of componentNames" [value]="val">{{val}}</option>
+      </select>
+      <ng-container *ngIf="!!dataOptions">
+        <select [(ngModel)]="dataOptionName" name="componentDataSelection">
+          <option *ngFor="let dataOption of dataOptions" [value]="dataOption.name">{{dataOption.name}}</option>
+        </select>
+      </ng-container>
+      <span>Load State:&nbsp;</span><span>{{ componentState }}</span>
+    </div>
+    <footer>
+      <button name="btnMount" [hidden]="isMounted" type="button" (click)="mountComponent()">mount</button>
+      <button name="btnUnmount" [hidden]="!isMounted" type="button" (click)="unmountComponent()">unmount</button>
+    </footer>
+  </form>
+</header>
+<div #componentAnchor></div>
+<lightbox-outlet></lightbox-outlet>

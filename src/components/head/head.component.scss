@@ -1,0 +1,86 @@
+@import "../../../node_modules/kio-ng2-uiux/scss/utils";
+
+
+.site-header {
+    position: absolute;
+    z-index: 15;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    padding: $row-gutter 0 0;
+
+    @media #{$medium-up} {
+        padding: $row-gutter*2 0 0;
+    }
+
+    .inner {
+        @extend %g-row;
+    }
+}
+
+.site-header__brand {
+    width: column-calc(6);
+
+    @extend %g-col;
+
+    h1 {
+        display: block;
+
+        margin: 0;
+    }
+
+    span {
+        position: absolute;
+        left: -9999em;
+    }
+
+    .logo {
+        width: rem-calc(172);
+        height: rem-calc(58);
+
+        svg{
+            width: 100%;
+            height: 100%;
+
+            path:first-child {
+                stroke: $color-font-bright;
+            }
+            path:last-child {
+                fill: $color-font-bright;
+            }
+        }
+
+        @media #{$medium-up} {
+            width: rem-calc(372);
+            height: rem-calc(125);
+
+            line-height: 0;
+        }
+    }
+}
+
+
+.site-header__tools {
+    display: flex;
+    justify-content: flex-end;
+
+    width: column-calc(4);
+    margin-right: column-calc(2);
+    padding-right: 0;
+
+    @extend %g-col-end;
+
+    @media #{$medium-up} {
+        width: column-calc(6);
+        margin-right: 0;
+    }
+
+    @media #{$medium-up} {
+        padding-right: $column-gutter * 3;
+    }
+
+    ui-sharing-dropdown {
+        @extend %hide-small;
+    }
+}
