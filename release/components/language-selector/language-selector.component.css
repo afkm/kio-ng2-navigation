@@ -230,6 +230,10 @@ component-router {
 .language-selector .ui-button {
   width: 2.5rem;
   height: 2.5rem; }
+  @media only screen and (min-width: 46.25em) and (max-width: 63.9375em) {
+    .language-selector .ui-button {
+      width: 3.3125rem;
+      height: 3.3125rem; } }
   .language-selector .ui-button svg path {
     fill: #FAF8F0; }
 

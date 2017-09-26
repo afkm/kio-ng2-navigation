@@ -10,9 +10,10 @@ import { KioNg2UIUXModule } from 'kio-ng2-uiux';
 import { KioNg2ComponentRoutingModule } from 'kio-ng2-component-routing';
 import { KioNg2GlobalsModule } from 'kio-ng2-globals';
 import { KioNg2NewsletterModule } from 'kio-ng2-newsletter';
-import { KioNg2ScrollingModule, ScrollService } from 'kio-ng2-scrolling';
+import { ScrollService } from 'kio-ng2-scrolling';
 import { KioNg2SitemapModule, SitemapChapterService } from 'kio-ng2-sitemap';
 import { LightboxModule } from 'kio-ng2-lightbox';
+import { Angulartics2Module } from 'angulartics2';
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
 //import { NavigationRoutesModule } from './routes/module'
 import { RootNavigationComponent } from './components/root/root-navigation.component';
@@ -32,22 +33,12 @@ var KioNg2NavigationModule = /** @class */ (function () {
                         BrowserModule,
                         CommonModule,
                         FormsModule,
-                        KioNg2ScrollingModule,
                         Ng2PageScrollModule.forRoot(),
                         KioNg2ComponentRoutingModule,
                         KioNg2UIUXModule,
                         KioNg2SitemapModule,
-                        KioNg2GlobalsModule.forRoot({
-                            mapping: {
-                                intro: 'cj5xt5dod001fjks91cdaljch',
-                                hint: "cj5xt5dod001hjks9oqbgvevk",
-                                share: "cj5xt5dod001ijks9thqhk6c1",
-                                nba: "cj5xt5dod001jjks95gwwmum4",
-                                social: "cj5xt5dod001kjks9n6asrf7k",
-                                sponsoring: "cj5xt5dod001ljks9h3v6nudz",
-                                copyrights: "cj5xt5dod001mjks9wvd5xl9l"
-                            }
-                        }),
+                        Angulartics2Module.forChild(),
+                        KioNg2GlobalsModule,
                         KioNg2SidebarModule,
                         NavigationRoutesModule,
                         KioNg2NewsletterModule,

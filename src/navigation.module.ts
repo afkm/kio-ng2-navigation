@@ -39,17 +39,7 @@ export const NavigationComponents = [ RootNavigationComponent, ContentNavigation
     KioNg2UIUXModule,
     KioNg2SitemapModule,
     Angulartics2Module.forChild (),
-    KioNg2GlobalsModule.forRoot ({
-      mapping: {
-        intro: 'cj5xt5dod001fjks91cdaljch',
-        hint: "cj5xt5dod001hjks9oqbgvevk",
-        share: "cj5xt5dod001ijks9thqhk6c1",
-        nba: "cj5xt5dod001jjks95gwwmum4",
-        social: "cj5xt5dod001kjks9n6asrf7k",
-        sponsoring: "cj5xt5dod001ljks9h3v6nudz",
-        copyrights: "cj5xt5dod001mjks9wvd5xl9l"
-      }
-    }),
+    KioNg2GlobalsModule,
     KioNg2SidebarModule,
     NavigationRoutesModule,
     KioNg2NewsletterModule,

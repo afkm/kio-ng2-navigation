@@ -136,6 +136,7 @@ export var TestData = [
                 mockLandscapeImageSrc,
                 mockShortText,
                 mockShortText,
+                mockShortText,
                 mockContent('txt')
             ]
         })
@@ -460,7 +461,7 @@ export var TestData = [
     },
     {
         componentName: 'Video',
-        data: mockFragment([VIMEO_SRC, 'txt'], ['video'])
+        data: mockFragment([mockLandscapeImageSrc, VIMEO_SRC, 'txt'], ['video'])
     },
     {
         componentName: 'LabeledImageWithMorphing',

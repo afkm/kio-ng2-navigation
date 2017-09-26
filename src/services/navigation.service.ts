@@ -6,6 +6,7 @@ import { Router, NavigationError, NavigationEnd, RoutesRecognized } from '@angul
 import { PageScrollService, PageScrollInstance } from 'ng2-page-scroll'
 import { DOCUMENT } from '@angular/platform-browser';
 import { ScrollService } from 'kio-ng2-scrolling'
+import { Angulartics2Module, Angulartics2, Angulartics2GoogleAnalytics } from 'angulartics2';
 
 @Injectable()
 export class NavigationService implements SitemapLoader {
@@ -30,7 +31,7 @@ export class NavigationService implements SitemapLoader {
   public gotoChapter <T extends MenuItem> ( menuItem:T ):Observable<T> {
     const chapter = this.sitemapChapterService.chapterForCUID ( menuItem.cuid )
     if ( this.sitemapChapterService.config.pagingEnabled === true ) {
-      return this.sitemapChapterService.gotoChapter ( chapter )
+      return this.sitemapChapterService.gotoChapter ( chapter ).mapTo ( menuItem )
     } else {
       const el = PageScrollInstance.simpleInstance(this.document,`#${menuItem.cuid}`)
       const pageScrollFinish:Observable<boolean>=(<any>el)._pageScrollFinish
@@ -44,7 +45,7 @@ export class NavigationService implements SitemapLoader {
   }
 
 
-  private scrollTo ( x, y ) {
+  private scrollTo ( x:number, y:number ):void {
     //window.scrollTo(x,y)
   }
 

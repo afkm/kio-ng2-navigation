@@ -274,9 +274,13 @@ component-router {
         fill: #FAF8F0; }
     @media only screen and (min-width: 46.25em) {
       .site-header__brand .logo {
-        width: 23.25rem;
-        height: 7.8125rem;
+        width: 25rem;
+        height: 8.375rem;
         line-height: 0; } }
+    @media only screen and (min-width: 64em) {
+      .site-header__brand .logo {
+        width: 19.75rem;
+        height: 6.625rem; } }
 
 .site-header__tools {
   display: flex;
@@ -287,7 +291,8 @@ component-router {
   @media only screen and (min-width: 46.25em) {
     .site-header__tools {
       width: 50%;
-      margin-right: 0; } }
-  @media only screen and (min-width: 46.25em) {
+      margin-right: 0;
+      padding-right: 4.625rem; } }
+  @media only screen and (min-width: 64em) {
     .site-header__tools {
       padding-right: 3.75rem; } }

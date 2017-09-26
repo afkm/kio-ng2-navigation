@@ -5,7 +5,7 @@ import { SitemapService } from 'kio-ng2-sitemap'
 
 import { Router, NavigationStart, NavigationCancel, NavigationError, NavigationEnd } from '@angular/router'
 
-const shortenLocale = locale => locale.split('_')[0]
+const shortenLocale = (locale:string):string => locale.split('_')[0]
 
 @Component({
   selector: 'language-selector',
@@ -25,13 +25,13 @@ export class LanguageSelectorComponent implements OnDestroy {
   isUpdating:boolean = false
 
   protected localeChangeSubscription=this.localeService.changes
-    .subscribe((locale)=>{
+    .subscribe((locale:string)=>{
       //window.afkm.logger.add(this,[`update locale index with "%s"`,[locale]])
       this.localeIndex = this.locales.indexOf(locale)
     })
   
-  protected routerSubscription=this.router.events.subscribe(
-    event => {
+  private routerSubscription=this.router.events.subscribe(
+    (event:any) => {
       if ( event instanceof NavigationStart )
       {
         this.isUpdating = true
