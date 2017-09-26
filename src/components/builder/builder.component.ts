@@ -1,4 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router'
+import { FormControl } from '@angular/forms'
 import { 
   Input, Injector, ReflectiveInjector, 
   Component, QueryList, ContentChildren, ComponentRef, ComponentFactoryResolver, 
@@ -14,7 +15,7 @@ import { TestData } from './TestData'
 import { KioContentModel, KioFragmentModel, KioContentState } from 'kio-ng2-data'
 
 
-const capitalize = ( value:string|string[] ):string => {
+const capitalize = ( value:string|string[] ) => {
   if ( Array.isArray(value) ) {
     return value.map(capitalize).join('')
   }
@@ -24,7 +25,7 @@ const capitalize = ( value:string|string[] ):string => {
   return value.substr(0,1).toUpperCase() + value.substr(1).toLowerCase()
 }
 
-const describeNode = ( node:KioContentModel|KioFragmentModel, withChildTypes:boolean=true ):string => {
+const describeNode = ( node:KioContentModel|KioFragmentModel, withChildTypes:boolean=true ) => {
   let mods:string = node.modifiers.join('.')
   if ( mods ) {
     mods = '.'+mods
@@ -170,7 +171,7 @@ export class ComponentBuilderComponent implements OnInit {
     }
     const routedComponentItem = this.getComponentItem(mockedNode)
     if ( !routedComponentItem || componentItem.component !== routedComponentItem.component ) {
-      console.warn(`Expected component ${this._componentName}Component but got ${routedComponentItem && routedComponentItem.name}`)
+      console.warn(`Expected component ${this._componentName}Component but got ${routedComponentItem && routedComponentItem.componentName}`)
     }
     this.componentNode = mockedNode;
     this.component = Factory.createComponentItemOnViewContainer ( 

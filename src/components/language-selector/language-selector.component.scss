@@ -7,6 +7,10 @@
         height: rem-calc(40);
 
         @extend %bordered-ui-button;
+        @media #{$medium-only} {
+            width: rem-calc(53);
+            height: rem-calc(53);
+        }
 
         svg path {
             fill: $color-font-bright;

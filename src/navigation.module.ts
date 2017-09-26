@@ -14,6 +14,7 @@ import { KioNg2NewsletterModule } from 'kio-ng2-newsletter'
 import { KioNg2ScrollingModule, ScrollService } from 'kio-ng2-scrolling'
 import { KioNg2SitemapModule, SitemapChapterService, Config, SITEMAP_CONFIG } from 'kio-ng2-sitemap'
 import { LightboxModule } from 'kio-ng2-lightbox'
+import { Angulartics2Module } from 'angulartics2';
 
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
 //import { NavigationRoutesModule } from './routes/module'
@@ -33,11 +34,11 @@ export const NavigationComponents = [ RootNavigationComponent, ContentNavigation
     BrowserModule,
     CommonModule,
     FormsModule,
-    KioNg2ScrollingModule,
     Ng2PageScrollModule.forRoot(),
     KioNg2ComponentRoutingModule,
     KioNg2UIUXModule,
     KioNg2SitemapModule,
+    Angulartics2Module.forChild (),
     KioNg2GlobalsModule.forRoot ({
       mapping: {
         intro: 'cj5xt5dod001fjks91cdaljch',
