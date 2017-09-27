@@ -13,7 +13,7 @@ import { KioNg2NewsletterModule } from 'kio-ng2-newsletter';
 import { ScrollService } from 'kio-ng2-scrolling';
 import { KioNg2SitemapModule, SitemapChapterService } from 'kio-ng2-sitemap';
 import { LightboxModule } from 'kio-ng2-lightbox';
-import { Angulartics2Module } from 'angulartics2';
+import { Angulartics2Module, Angulartics2, Angulartics2GoogleAnalytics } from 'angulartics2';
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
 //import { NavigationRoutesModule } from './routes/module'
 import { RootNavigationComponent } from './components/root/root-navigation.component';
@@ -75,6 +75,8 @@ var KioNg2NavigationModule = /** @class */ (function () {
                     declarations: NavigationComponents.slice(),
                     entryComponents: NavigationComponents.slice(),
                     providers: [
+                        Angulartics2,
+                        Angulartics2GoogleAnalytics,
                         NavigationService,
                         {
                             provide: SITEMAP_LOADER,

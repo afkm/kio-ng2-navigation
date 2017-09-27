@@ -14,7 +14,7 @@ import { KioNg2NewsletterModule } from 'kio-ng2-newsletter'
 import { KioNg2ScrollingModule, ScrollService } from 'kio-ng2-scrolling'
 import { KioNg2SitemapModule, SitemapChapterService, Config, SITEMAP_CONFIG } from 'kio-ng2-sitemap'
 import { LightboxModule } from 'kio-ng2-lightbox'
-import { Angulartics2Module } from 'angulartics2';
+import { Angulartics2Module, Angulartics2, Angulartics2GoogleAnalytics } from 'angulartics2';
 
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
 //import { NavigationRoutesModule } from './routes/module'
@@ -78,6 +78,8 @@ export const NavigationComponents = [ RootNavigationComponent, ContentNavigation
   ],
   entryComponents: [ ...NavigationComponents ],
   providers: [
+    Angulartics2, 
+    Angulartics2GoogleAnalytics,
     NavigationService,
     {
       provide: SITEMAP_LOADER,
