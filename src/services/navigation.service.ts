@@ -22,8 +22,8 @@ export class NavigationService implements SitemapLoader {
     @Inject(DOCUMENT) private document:HTMLDocument,
     private pageScrollService : PageScrollService,
     private scrollService : ScrollService,
-    private angulartics:Angulartics2,
-    private angulartics2GoogleAnalytics:Angulartics2GoogleAnalytics
+    @Inject(Angulartics2) private angulartics : Angulartics2,
+    @Inject(Angulartics2GoogleAnalytics) private angulartics2GoogleAnalytics : Angulartics2GoogleAnalytics
    ) { 
     this.trackCurrentURL () 
   }

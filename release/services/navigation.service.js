@@ -68,8 +68,8 @@ var NavigationService = /** @class */ (function () {
         { type: HTMLDocument, decorators: [{ type: Inject, args: [DOCUMENT,] },] },
         { type: PageScrollService, },
         { type: ScrollService, },
-        { type: Angulartics2, },
-        { type: Angulartics2GoogleAnalytics, },
+        { type: Angulartics2, decorators: [{ type: Inject, args: [Angulartics2,] },] },
+        { type: Angulartics2GoogleAnalytics, decorators: [{ type: Inject, args: [Angulartics2GoogleAnalytics,] },] },
     ]; };
     return NavigationService;
 }());
