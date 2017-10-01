@@ -50,6 +50,37 @@ function testDir ( dirname ) {
   })
 }
 
+function uniqList ( list ) {
+  if ( Array.isArray(list) ) {
+    return list.filter ( ( item, idx ) => idx === list.indexOf (item) )
+  }
+  return list
+}
+
+function merge ( left, right, key='root' ) {
+
+  if ( left instanceof Object && right instanceof Object ) {
+    
+    const keys = uniqList ( Object.keys ( left ).concat ( Object.keys ( right ) ) )
+    const out = {}
+
+    keys.forEach ( key => {
+      out [key] = merge ( left[key], right[key], key )
+    } )
+
+    return out
+  } else {
+
+    if ( left !== right ) {
+      console.log( 'left: %s', left )
+      console.log( 'right: %s', right )
+    }
+
+    return left || right
+
+  }
+}
+
 
 const MODULE_SOURCE = path.resolve(process.argv[2])
 const MODULE_TARGET = path.resolve(process.argv[3])
@@ -72,12 +103,12 @@ Promise.all([
       .then ( packageModule1 => {
         return readJSON ( packageSource )
           .then ( packageModule0 => {
-            return Object.assign (packageModule1, packageModule0)
+            return merge (packageModule1, packageModule0)
           } )
       } )
   } )
   .then ( result => {
-    console.log('merged: ', result)
+    //console.log('merged: ', result)
     return writeFile(packageTarget,JSON.stringify(result,null,'  '))
   } )
   .catch ( error => {
