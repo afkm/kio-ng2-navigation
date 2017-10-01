@@ -16,6 +16,7 @@ var ContentNavigationComponent = /** @class */ (function (_super) {
     __extends(ContentNavigationComponent, _super);
     function ContentNavigationComponent() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.pagingEnabled = _this.navigationService.sitemapChapterService.config.pagingEnabled;
         _this.pageScrollService = _this.injector.get(PageScrollService);
         _this.document = _this.injector.get(DOCUMENT);
         _this.sitemapServiceResetSub = _this.navigationService.sitemapChapterService.allModels.subscribe(function (m) {
@@ -35,7 +36,7 @@ var ContentNavigationComponent = /** @class */ (function (_super) {
     }
     ContentNavigationComponent.decorators = [
         { type: Component, args: [{
-                    selector: 'kio-navigation-content',
+                    selector: 'navigation-content',
                     templateUrl: './content-navigation.component.html',
                     styleUrls: [
                         './content-navigation.component.css'

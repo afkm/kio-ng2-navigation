@@ -1,18 +1,30 @@
+import { Observable } from 'rxjs/Observable'
+import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/filter'
+
 import { ActivatedRoute, Router } from '@angular/router'
 import { FormControl } from '@angular/forms'
 import { 
   Input, Injector, ReflectiveInjector, 
+  EventEmitter,
   Component, QueryList, ContentChildren, ComponentRef, ComponentFactoryResolver, 
   ViewContainerRef, ViewChild, OnInit 
 } from '@angular/core';
 import { 
   DataComponent, ContentDataComponent, FragmentDataComponent, 
   Factory, defaultStore, ContentMockingService,
-  Annotation
+  Annotation, mock
 } from 'kio-ng2-component-routing'
-import { TestData } from './TestData'
+//import { TestData } from './TestData'
 
 import { KioContentModel, KioFragmentModel, KioContentState } from 'kio-ng2-data'
+
+import { ComponentBuilderService } from '../../services/component-builder.service'
+import { 
+  TestDataRecord, TestDataRecordData, isTestDataRecord, isTestDataRecordData, 
+  MockedContent, MockedFragment, isMockedContent, isMockedFragment 
+} from '../../dev/interfaces'
+
 
 
 const capitalize = ( value:string|string[] ):string => {
@@ -59,7 +71,8 @@ export class ComponentBuilderComponent implements OnInit {
     private route : ActivatedRoute, 
     private router : Router, 
     private componentFactoryResolver : ComponentFactoryResolver,
-    protected injector:Injector
+    protected injector:Injector,
+    private componentBuilderService : ComponentBuilderService
   ) { }
 
   @ViewChild('componentAnchor', {read: ViewContainerRef}) 
@@ -76,6 +89,8 @@ export class ComponentBuilderComponent implements OnInit {
   private mockingService:ContentMockingService=new ContentMockingService()
   private _dataOptionName:any;
 
+  private componentNameEmitter:EventEmitter<string>=new EventEmitter()
+
   set dataOptionName ( optionName:any ) {
     this._dataOptionName = optionName
     if ( this.component )
@@ -89,6 +104,7 @@ export class ComponentBuilderComponent implements OnInit {
     if ( option )
     {
       this.componentNode = option.data
+      this.componentNameEmitter.emit ( optionName )
     }
   }
 
@@ -97,7 +113,7 @@ export class ComponentBuilderComponent implements OnInit {
   }
 
   mockDataForComponent ( componentName : string ) {
-    let testData = TestData.find ( data => data.componentName === componentName )
+    let testData = this.componentBuilderService.testData.find ( data => data.componentName === componentName )
     if ( testData )
     {
       return testData.data
@@ -141,7 +157,7 @@ export class ComponentBuilderComponent implements OnInit {
       component,
       fixture,
       annotation
-    } = defaultStore.getComponentForNode(node)
+    } = this.componentBuilderService.getComponentForNode(node)
     return {
       name, 
       component, 
@@ -150,30 +166,19 @@ export class ComponentBuilderComponent implements OnInit {
     }
   }
 
-  mountComponent() {
-    this.unmountComponent()
-    if ( !this._componentName )
-      return
+  mountComponentWithNode ( node:KioContentModel|KioFragmentModel, componentName:string=this._componentName ) {
     
-    this.data.componentName = this._componentName
-    //const SelectedComponent : LazyLoad.KioComponent<KioContentModel> = PublicationComponents.find ( comp => comp.name === this._componentName + 'Component' )
-    //const resolvedComponent = this.componentFactoryResolver.resolveComponentFactory(SelectedComponent)
-    //const resolvedComponent = LazyLoad.createFactoryForComponentItem(this.componentFactoryResolver,SelectedComponent)
-    
-    const mockedNode = this.mockDataForComponent(this._componentName)
-    console.group('mocked node')
-    console.log(describeNode(mockedNode))
-    console.groupEnd()
-    const componentItem = defaultStore.getComponentByName(this._componentName)
+    this.data.componentName = componentName
+
+    const componentItem = this.componentBuilderService.getComponentByName(this._componentName)
     if ( !componentItem ) {
       console.error('No component found for name "%s"', this._componentName)
       return
     }
-    const routedComponentItem = this.getComponentItem(mockedNode)
+    const routedComponentItem = this.getComponentItem(node)
     if ( !routedComponentItem || componentItem.component !== routedComponentItem.component ) {
       console.warn(`Expected component ${this._componentName}Component but got ${routedComponentItem && routedComponentItem.name}`)
     }
-    this.componentNode = mockedNode;
     this.component = Factory.createComponentItemOnViewContainer ( 
       componentItem,
       this.componentFactoryResolver,
@@ -187,36 +192,112 @@ export class ComponentBuilderComponent implements OnInit {
     //(<any>this.component.instance).onNodeUpdate()
 
     //this.component = <ComponentRef<KioAbstractComponent<KioContentModel>>>this.mountPoint.createComponent(resolvedComponent)
-    if ( !mockedNode )
+    if ( !node )
     {
       throw Error ( 'no fixture available for "' + this._componentName + '"!' )
     }
-    if ( Array.isArray ( mockedNode ) )
+    if ( Array.isArray ( node ) )
     {
-      this.dataOptions = mockedNode
+      this.dataOptions = node
       if ( this.dataOptionName )
       {
-        const idx = mockedNode.findIndex ( item => item.name === this.dataOptionName )
+        const idx = node.findIndex ( item => item.name === this.dataOptionName )
         if ( idx === -1 )
         {
-          this.dataOptionName = mockedNode[0].name
+          this.dataOptionName = node[0].name
         }
       }else
       {
-        this.dataOptionName = mockedNode[0].name
+        this.dataOptionName = node[0].name
       }
       this.selectOption ( this.dataOptionName )
     }
-    /*else 
-    {
-      this.component.instance.node = mockedNode
-    }*/
     return this.component
+
+  }
+
+  mountComponent() {
+    this.unmountComponent()
+    if ( !this._componentName )
+      return
+    
+    const mockedData = this.mockDataForComponent(this._componentName)
+    
+    if ( !mockedData ) {
+      console.error ( `Could not find mocked data for ${this._componentName}` )
+      return
+    }
+
+    this.componentNode = this.dataToNode ( mockedData )
+    console.group('mocked node')
+    console.log(describeNode(this.componentNode))
+    console.groupEnd()
+
+    return this.mountComponentWithNode ( this.componentNode, this._componentName )
+    
+
     //componentRef.instance.node = this.node
   }
 
+  private componentData:Observable<TestDataRecord>=this.componentBuilderService.routeData.filter ( r => r.length < 2 ).map ( r => {
+    if ( r.length === 1 ) {
+      return r[0]
+    } else {
+      return undefined
+    }
+  } )
+
+
+  private dataToNode ( data:TestDataRecordData|TestDataRecordData[]|TestDataRecord|MockedContent|MockedFragment|string ):KioContentModel|KioFragmentModel {
+
+    const fillContentNode = ( data:any ) => {
+      if ( !('cuid' in data) || data['cuid'].indexOf('[mock') === -1 ) {
+        data.cuid = mock.cuid()
+      }
+
+      if ( data instanceof KioContentModel || data instanceof KioFragmentModel ) {
+        return data
+      }
+
+      if ( !data.type ) {
+        data.type = data.type || ( 'children' in data ? 'fragment' : 'txt' )
+      }
+      data.modifiers = data.modifiers || []
+      data.locale = data.locale || 'de_DE'
+      return data
+    }
+
+    if ( Array.isArray(data) ) {
+      return this.dataToNode(data[0])
+    }
+    if ( isMockedFragment ( data ) ) {
+      return new KioFragmentModel ( fillContentNode({
+        ...data,
+        children: data.children.map ( c => this.dataToNode ( c ) )
+      }) )
+    } else if ( isMockedContent ( data ) ) {
+      return new KioContentModel ( fillContentNode(data) )
+    } else if ( isTestDataRecord ( data ) || isTestDataRecordData ( data ) ) {
+      return this.dataToNode ( data.data )
+    } else {
+      return this.dataToNode ( mock.mockContent(data) )
+    }
+
+  }
+
+  private componentElement=this.componentData.concatMap ( (data:TestDataRecord,idx:number) => {
+    const node:KioContentModel|KioFragmentModel = this.dataToNode ( data )
+    return Observable.of(this.componentBuilderService.getComponentForNode ( node ))
+  } )
+
+  private routeTestDataSub=this.componentBuilderService.routeData.subscribe ( records => {
+    console.log('route test data: ', records )
+  } )
+
+
+
   ngOnInit() {
-    this.componentNames = defaultStore.map ( c => capitalize(c.name.replace(/(kio|publication)\-/,'')))
+    this.componentNames = this.componentBuilderService.allComponents().map ( c => capitalize(c.name.replace(/(kio|publication)\-/,'')))
     this.route.params.subscribe ( ( params ) => {
       if ( params["ComponentName"] ) {
         this._componentName = params["ComponentName"].replace(/Component$/,'')

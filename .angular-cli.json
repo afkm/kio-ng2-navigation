@@ -1,0 +1,20 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "project": {
+    "name": "kio-ng2-navigation"
+  },
+  "apps": [
+    {
+      "root": "src",
+      "outDir": "build",
+      "assets": [],
+      "tsconfig": "tsconfig-ngc.json",
+      "prefix": "navigation",
+      "styles": []
+    }
+  ],
+  "defaults": {
+    "styleExt": "css",
+    "component": {}
+  }
+}

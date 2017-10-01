@@ -1,0 +1,14 @@
+<form submit="return false;">
+  <div class="form-field">
+    <label for="componentSelection">Select a component</label>
+    <select [(ngModel)]="currentComponentName" name="componentSelection" (change)="updateCurrentComponentName($event)">
+      <option *ngFor="let val of componentNames" [value]="val">{{val}}</option>
+    </select>
+    <h5>{{ componentName | async }}</h5>
+  </div>
+  <!-- <footer>
+    <button name="btnMount" [hidden]="isMounted" type="button" (click)="mountComponent()" [disabled]="!currentComponentName">mount</button>
+    <button name="btnUnmount" [hidden]="!isMounted" type="button" (click)="unmountComponent()">unmount</button>
+  </footer>-->
+</form>
+<router-outlet></router-outlet>
