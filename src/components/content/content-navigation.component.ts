@@ -7,7 +7,7 @@ import { PageScrollService, PageScrollInstance } from 'ng2-page-scroll'
 
 
 @Component({
-  selector: 'kio-navigation-content',
+  selector: 'navigation-content',
   templateUrl: './content-navigation.component.html',
   styleUrls: [
     './content-navigation.component.scss'
@@ -16,10 +16,13 @@ import { PageScrollService, PageScrollInstance } from 'ng2-page-scroll'
 })
 export class ContentNavigationComponent extends AbstractNavigationComponent {
 
-  protected pageScrollService: PageScrollService = this.injector.get(PageScrollService)
-  protected document:HTMLDocument=this.injector.get(DOCUMENT)
+  public pagingEnabled:boolean=this.navigationService.sitemapChapterService.config.pagingEnabled
 
   public chapterModels:KioPublicationModel[]
+
+  protected pageScrollService: PageScrollService = this.injector.get(PageScrollService)
+  
+  protected document:HTMLDocument=this.injector.get(DOCUMENT)
 
   private sitemapServiceResetSub=this.navigationService.sitemapChapterService.allModels.subscribe ( m => {
     this.chapterModels = []
