@@ -25,23 +25,36 @@ export class NavigationService implements SitemapLoader {
     @Inject(Angulartics2) private angulartics : Angulartics2,
     @Inject(Angulartics2GoogleAnalytics) private angulartics2GoogleAnalytics : Angulartics2GoogleAnalytics
    ) { 
+
     this.trackCurrentURL () 
+
   }
 
   public gotoChapter <T extends MenuItem> ( menuItem:T ):Observable<T> {
+    
     const chapter = this.sitemapChapterService.chapterForCUID ( menuItem.cuid )
+    
     if ( this.sitemapChapterService.config.pagingEnabled === true ) {
+    
       return this.sitemapChapterService.gotoChapter ( chapter ).mapTo ( menuItem )
+    
     } else {
+    
       const el = PageScrollInstance.simpleInstance(this.document,`#${menuItem.cuid}`)
       const pageScrollFinish:Observable<boolean>=(<any>el)._pageScrollFinish
+    
       this.scrollService.pause.emit()
       this.pageScrollService.start(el)
-      return pageScrollFinish.take(1).mapTo(menuItem).map(menuItem => {
+    
+      return pageScrollFinish.take(1).mapTo(menuItem).map( menuItem => {
+        
         this.scrollService.resume.emit(true)
         return menuItem
+      
       })
+    
     }
+
   }
 
 
@@ -50,15 +63,12 @@ export class NavigationService implements SitemapLoader {
   }
 
   private routerSubscription=this.router.events.subscribe ( ( event ) => {
-    if ( event instanceof RoutesRecognized )
-    {
+    if ( event instanceof RoutesRecognized ) {
       this.scrollTo(0,0)
     }
 
-    if ( event instanceof NavigationError )
-    {
-      if ( event.url !== '/error' )
-      {
+    if ( event instanceof NavigationError ) {
+      if ( event.url !== '/error' ) {
         this.router.navigateByUrl('/error')
       }
     }

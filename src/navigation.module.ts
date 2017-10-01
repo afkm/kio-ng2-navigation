@@ -5,7 +5,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common'
 import { FormsModule } from '@angular/forms'
 import { RouterModule, Router, Routes, ROUTES } from '@angular/router'
-import { NavigationService } from './services/navigation.service'
 import { KioNg2SidebarModule, SITEMAP_LOADER } from 'kio-ng2-sidebar'
 import { KioNg2UIUXModule } from 'kio-ng2-uiux'
 import { KioNg2ComponentRoutingModule } from 'kio-ng2-component-routing'
@@ -15,19 +14,51 @@ import { KioNg2ScrollingModule, ScrollService } from 'kio-ng2-scrolling'
 import { KioNg2SitemapModule, SitemapChapterService, Config, SITEMAP_CONFIG } from 'kio-ng2-sitemap'
 import { LightboxModule } from 'kio-ng2-lightbox'
 import { Angulartics2Module, Angulartics2, Angulartics2GoogleAnalytics } from 'angulartics2';
-
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
-//import { NavigationRoutesModule } from './routes/module'
+
+import { NavigationService } from './services/navigation.service'
+import { ComponentBuilderService } from './services/component-builder.service'
+
+import { TestDataRecord, TestDataRecordData, MockedContent, MockedFragment } from './dev/interfaces'
+import { TEST_DATA } from './dev/test-data.token'
+export { TEST_DATA } from './dev/test-data.token'
+export { TestDataRecord, TestDataRecordData, MockedContent, MockedFragment } from './dev/interfaces'
+import { ComponentBuilderFormService } from './dev/services/builder-form.service'
+
+import { ComponentDataResolver } from './dev/resolver/component-data.resolver'
+
+import { ComponentBuilderComponent } from './dev/components/component-builder/component-builder.component'
+import { ComponentBuilderForm } from './dev/components/component-builder-form/component-builder-form.component'
+
+import { NavigationConfig } from './interfaces/navigation-config'
+
+
 import { RootNavigationComponent } from './components/root/root-navigation.component'
 import { ContentNavigationComponent } from './components/content/content-navigation.component'
-import { ComponentBuilderComponent } from './components/builder/builder.component'
 import { HeaderComponent } from './components/head/head.component'
 import { LanguageSelectorComponent } from './components/language-selector/language-selector.component'
-import { NavigationRoutesModule } from './routes/module'
+import { FootComponent } from './components/foot/foot.component'
 
-export const NavigationComponents = [ RootNavigationComponent, ContentNavigationComponent, HeaderComponent, LanguageSelectorComponent, ComponentBuilderComponent ]
-//export const NavigationComponents = []
+export const NavigationComponents = [ RootNavigationComponent, ContentNavigationComponent, HeaderComponent, LanguageSelectorComponent, ComponentBuilderComponent, FootComponent, ComponentBuilderForm ]
 
+export { NavigationService } from './services/navigation.service'
+export { ComponentBuilderService } from './services/component-builder.service'
+
+export const DefaultProviders:Provider[] = [
+  Angulartics2, 
+  Angulartics2GoogleAnalytics,
+  NavigationService,
+  {
+    provide: SITEMAP_LOADER,
+    useExisting: NavigationService,
+    deps: [SitemapChapterService,Router]
+  },
+  NavigationService,
+  ComponentBuilderService,
+  ComponentBuilderFormService,
+  ScrollService,
+  ComponentDataResolver
+]
 
 @NgModule({
   imports: [
@@ -41,53 +72,57 @@ export const NavigationComponents = [ RootNavigationComponent, ContentNavigation
     Angulartics2Module.forChild (),
     KioNg2GlobalsModule,
     KioNg2SidebarModule,
-    NavigationRoutesModule,
-    KioNg2NewsletterModule,
-    LightboxModule
-    /*RouterModule.forRoot ([
+    RouterModule.forRoot([
       {
-        path: 'dev/:ComponentName',
-        component: ComponentBuilderComponent,
+        path: 'dev',
+        component: ComponentBuilderForm,
         pathMatch: 'full'
       },
       {
-        path: 'dev',
-        component: ComponentBuilderComponent,
-        pathMatch: 'full'
+        path: 'dev/:ComponentName',
+        component: ComponentBuilderForm,
+        pathMatch: 'full',
+        resolve: {
+          componentData: ComponentDataResolver
+        },
+        children: [
+          {
+            pathMatch: 'full',
+            path: '',
+            component: ComponentBuilderComponent
+          }
+        ]
       },
       {
         path: '',
         component: RootNavigationComponent,
         children: [
           {
-            path: ':slug',
-            pathMatch: 'full',
-            component: ContentNavigationComponent
-          },
-          {
-            path: '',
-            pathMatch: 'full',
-            component: ContentNavigationComponent
+            path: ':lang',
+            children: [
+              {
+                path: '**',
+                pathMatch: 'full',
+                component: ContentNavigationComponent
+              }
+            ]
           }
         ]
       }
-    ])*/
+    ]),
+    KioNg2NewsletterModule,
+    LightboxModule
   ],
   declarations: [
     ...NavigationComponents
   ],
   entryComponents: [ ...NavigationComponents ],
   providers: [
-    Angulartics2, 
-    Angulartics2GoogleAnalytics,
-    NavigationService,
+    ...DefaultProviders, 
     {
-      provide: SITEMAP_LOADER,
-      useExisting: NavigationService,
-      deps: [SitemapChapterService,Router]
-    },
-    NavigationService,
-    ScrollService
+      provide: TEST_DATA,
+      useValue: []
+    }
   ],
   exports: [
     BrowserModule,
@@ -96,8 +131,25 @@ export const NavigationComponents = [ RootNavigationComponent, ContentNavigation
     KioNg2SitemapModule,
     KioNg2SidebarModule,
     KioNg2UIUXModule,
-    NavigationRoutesModule,
+    RouterModule,
     FormsModule
   ]
 })
-export class KioNg2NavigationModule {}
+export class KioNg2NavigationModule {
+
+  static forRoot ( config:NavigationConfig={} ):ModuleWithProviders {
+    const withTestData:boolean = 'testData' in config
+    return {
+      ngModule: KioNg2NavigationModule,
+      providers: (
+        withTestData 
+          ? [ 
+            {
+              provide: TEST_DATA,
+              useValue: config.testData.slice()
+            } ] 
+          : [] )
+    }
+  }
+
+}

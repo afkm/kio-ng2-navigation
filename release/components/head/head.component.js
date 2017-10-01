@@ -1,9 +1,17 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
+import { ComponentBuilderService } from '../../services/component-builder.service';
 var HeaderComponent = /** @class */ (function () {
-    function HeaderComponent() {
-        this.showsLogo = true;
+    function HeaderComponent(componentBuilderService) {
+        var _this = this;
+        this.componentBuilderService = componentBuilderService;
+        this.isDevRoute = false;
+        this.devRouteSub = this.componentBuilderService.isDevRoute.subscribe(function (isDevRoute) {
+            _this.isDevRoute = isDevRoute;
+        });
     }
-    HeaderComponent.prototype.ngOnInit = function () {
+    HeaderComponent.prototype.ngOnInit = function () { };
+    HeaderComponent.prototype.ngOnDestroy = function () {
+        this.devRouteSub.unsubscribe();
     };
     HeaderComponent.decorators = [
         { type: Component, args: [{
@@ -13,10 +21,9 @@ var HeaderComponent = /** @class */ (function () {
                 },] },
     ];
     /** @nocollapse */
-    HeaderComponent.ctorParameters = function () { return []; };
-    HeaderComponent.propDecorators = {
-        'showsLogo': [{ type: Input },],
-    };
+    HeaderComponent.ctorParameters = function () { return [
+        { type: ComponentBuilderService, },
+    ]; };
     return HeaderComponent;
 }());
 export { HeaderComponent };
