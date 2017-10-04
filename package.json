@@ -1,6 +1,6 @@
 {
   "name": "kio-ng2-navigation",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Navigation components",
   "main": "./release/navigation.module",
   "module": "./release/navigation.module",
