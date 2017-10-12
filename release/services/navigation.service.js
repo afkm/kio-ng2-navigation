@@ -21,7 +21,7 @@ var NavigationService = /** @class */ (function () {
         this.angulartics = angulartics;
         this.angulartics2GoogleAnalytics = angulartics2GoogleAnalytics;
         this.routerSubscription = this.router.events.subscribe(function (event) {
-            if (event instanceof RoutesRecognized) {
+            if (event instanceof RoutesRecognized && _this.sitemapChapterService.config.pagingEnabled === true) {
                 _this.scrollTo(0, 0);
             }
             if (event instanceof NavigationError) {
@@ -53,7 +53,7 @@ var NavigationService = /** @class */ (function () {
         }
     };
     NavigationService.prototype.scrollTo = function (x, y) {
-        //window.scrollTo(x,y)
+        window.scrollTo(x, y);
     };
     NavigationService.prototype.trackCurrentURL = function () {
         this.angulartics2GoogleAnalytics.pageTrack(this.router.url);

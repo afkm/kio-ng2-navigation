@@ -59,11 +59,11 @@ export class NavigationService implements SitemapLoader {
 
 
   private scrollTo ( x:number, y:number ):void {
-    //window.scrollTo(x,y)
+    window.scrollTo(x,y)
   }
 
   private routerSubscription=this.router.events.subscribe ( ( event ) => {
-    if ( event instanceof RoutesRecognized ) {
+    if ( event instanceof RoutesRecognized && this.sitemapChapterService.config.pagingEnabled === true ) {
       this.scrollTo(0,0)
     }
 
