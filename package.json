@@ -1,6 +1,6 @@
 {
   "name": "kio-ng2-navigation",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Navigation components",
   "main": "./release/navigation.module",
   "module": "./release/navigation.module",
@@ -46,7 +46,7 @@
     "rxjs": "^5.4.3",
     "zone.js": "^0.8.17",
     "kio-ng2-sidebar": "^0.0.0",
-    "kio-ng2-lightbox": "^0.0.0"    
+    "kio-ng2-lightbox": "^0.0.0"
   },
   "devDependencies": {
     "@angular/cli": "^1.4.3",
