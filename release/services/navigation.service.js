@@ -5,13 +5,14 @@ import { PageScrollService, PageScrollInstance } from 'ng2-page-scroll';
 import { DOCUMENT } from '@angular/platform-browser';
 import { ScrollService } from 'kio-ng2-scrolling';
 import { Angulartics2, Angulartics2GoogleAnalytics } from 'angulartics2';
+import { GlobalsService } from 'kio-ng2-globals';
 var NavigationService = /** @class */ (function () {
     /**
      * create instance of navigation service; called at module injection time
      * @param {ActivatedRoute} private route
      * @param {Router}         private router
      */
-    function NavigationService(sitemapChapterService, router, document, pageScrollService, scrollService, angulartics, angulartics2GoogleAnalytics) {
+    function NavigationService(sitemapChapterService, router, document, pageScrollService, scrollService, angulartics, angulartics2GoogleAnalytics, globalsService) {
         var _this = this;
         this.sitemapChapterService = sitemapChapterService;
         this.router = router;
@@ -20,9 +21,10 @@ var NavigationService = /** @class */ (function () {
         this.scrollService = scrollService;
         this.angulartics = angulartics;
         this.angulartics2GoogleAnalytics = angulartics2GoogleAnalytics;
+        this.globalsService = globalsService;
         this.routerSubscription = this.router.events.subscribe(function (event) {
             if (event instanceof RoutesRecognized && _this.sitemapChapterService.config.pagingEnabled === true) {
-                _this.scrollTo(0, 0);
+                _this.resetPage();
             }
             if (event instanceof NavigationError) {
                 if (event.url !== '/error') {
@@ -31,6 +33,9 @@ var NavigationService = /** @class */ (function () {
             }
             if (event instanceof NavigationEnd) {
                 _this.trackCurrentURL();
+                if (_this.sitemapChapterService.config.pagingEnabled) {
+                    _this.globalsService.show();
+                }
             }
         });
         this.trackCurrentURL();
@@ -52,8 +57,9 @@ var NavigationService = /** @class */ (function () {
             });
         }
     };
-    NavigationService.prototype.scrollTo = function (x, y) {
-        window.scrollTo(x, y);
+    NavigationService.prototype.resetPage = function () {
+        this.globalsService.hide();
+        window.scrollTo(0, 0);
     };
     NavigationService.prototype.trackCurrentURL = function () {
         this.angulartics2GoogleAnalytics.pageTrack(this.router.url);
@@ -70,6 +76,7 @@ var NavigationService = /** @class */ (function () {
         { type: ScrollService, },
         { type: Angulartics2, decorators: [{ type: Inject, args: [Angulartics2,] },] },
         { type: Angulartics2GoogleAnalytics, decorators: [{ type: Inject, args: [Angulartics2GoogleAnalytics,] },] },
+        { type: GlobalsService, decorators: [{ type: Inject, args: [GlobalsService,] },] },
     ]; };
     return NavigationService;
 }());

@@ -7,6 +7,7 @@ import { PageScrollService, PageScrollInstance } from 'ng2-page-scroll'
 import { DOCUMENT } from '@angular/platform-browser';
 import { ScrollService } from 'kio-ng2-scrolling'
 import { Angulartics2Module, Angulartics2, Angulartics2GoogleAnalytics } from 'angulartics2';
+import { GlobalsService } from 'kio-ng2-globals'
 
 @Injectable()
 export class NavigationService implements SitemapLoader {
@@ -23,7 +24,8 @@ export class NavigationService implements SitemapLoader {
     private pageScrollService : PageScrollService,
     private scrollService : ScrollService,
     @Inject(Angulartics2) private angulartics : Angulartics2,
-    @Inject(Angulartics2GoogleAnalytics) private angulartics2GoogleAnalytics : Angulartics2GoogleAnalytics
+    @Inject(Angulartics2GoogleAnalytics) private angulartics2GoogleAnalytics : Angulartics2GoogleAnalytics,
+    @Inject(GlobalsService) private globalsService:GlobalsService
    ) { 
 
     this.trackCurrentURL () 
@@ -58,13 +60,14 @@ export class NavigationService implements SitemapLoader {
   }
 
 
-  private scrollTo ( x:number, y:number ):void {
-    window.scrollTo(x,y)
+  private resetPage ( ):void {
+    this.globalsService.hide()
+    window.scrollTo(0,0)
   }
 
   private routerSubscription=this.router.events.subscribe ( ( event ) => {
     if ( event instanceof RoutesRecognized && this.sitemapChapterService.config.pagingEnabled === true ) {
-      this.scrollTo(0,0)
+      this.resetPage()
     }
 
     if ( event instanceof NavigationError ) {
@@ -75,6 +78,9 @@ export class NavigationService implements SitemapLoader {
 
     if ( event instanceof NavigationEnd ) {
       this.trackCurrentURL ()
+      if ( this.sitemapChapterService.config.pagingEnabled ) {
+        this.globalsService.show()
+      }
     }
   } )
 

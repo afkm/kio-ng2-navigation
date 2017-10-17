@@ -25,7 +25,7 @@
     "notify:build:start": "./scripts/ngModule.sh notify \"Build started\"",
     "notify:build:end": "./scripts/ngModule.sh notify done \"Build finished\"",
     "dev:sync:watch": "./scripts/watch.sh notify:build:start dev:sync notify:build:end",
-    "build:dev": "NODE_ENV=development npm run build",
+    "build:dev": "NODE_ENV=development npm run build && npm run dev:sync",
     "build:dev:watch": "./scripts/watch.sh notify:build:start build:dev notify:build:end",
     "build:release": "NODE_ENV=production npm run build",
     "build:release:watch": "./scripts/watch.sh build:release"
@@ -42,6 +42,7 @@
     "kio-ng2-ctn": "^0.0.0",
     "kio-ng2-uiux": "^0.0.1",
     "kio-ng2-data": "^0.0.1",
+    "kio-ng2-globals": "^0.0.3",
     "ng-inline-svg": "^3.0.0",
     "rxjs": "^5.4.3",
     "zone.js": "^0.8.17",
