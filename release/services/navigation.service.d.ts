@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { PageScrollService } from 'ng2-page-scroll';
 import { ScrollService } from 'kio-ng2-scrolling';
 import { Angulartics2, Angulartics2GoogleAnalytics } from 'angulartics2';
+import { GlobalsService } from 'kio-ng2-globals';
 export declare class NavigationService implements SitemapLoader {
     readonly sitemapChapterService: SitemapChapterService;
     private router;
@@ -13,14 +14,15 @@ export declare class NavigationService implements SitemapLoader {
     private scrollService;
     private angulartics;
     private angulartics2GoogleAnalytics;
+    private globalsService;
     /**
      * create instance of navigation service; called at module injection time
      * @param {ActivatedRoute} private route
      * @param {Router}         private router
      */
-    constructor(sitemapChapterService: SitemapChapterService, router: Router, document: HTMLDocument, pageScrollService: PageScrollService, scrollService: ScrollService, angulartics: Angulartics2, angulartics2GoogleAnalytics: Angulartics2GoogleAnalytics);
+    constructor(sitemapChapterService: SitemapChapterService, router: Router, document: HTMLDocument, pageScrollService: PageScrollService, scrollService: ScrollService, angulartics: Angulartics2, angulartics2GoogleAnalytics: Angulartics2GoogleAnalytics, globalsService: GlobalsService);
     gotoChapter<T extends MenuItem>(menuItem: T): Observable<T>;
-    private scrollTo(x, y);
+    private resetPage();
     private routerSubscription;
     private trackCurrentURL();
 }
