@@ -2,7 +2,7 @@ import { Observable } from 'rxjs/Observable'
 import { Injectable, Inject } from '@angular/core'
 import { SitemapNavigation, SitemapLoader, MenuItem } from 'kio-ng2-sidebar'
 import { SITEMAP_CONFIG, SitemapChapter, ChapterConfig, SitemapService, SitemapChapterService } from 'kio-ng2-sitemap'
-import { Router, NavigationError, NavigationEnd, RoutesRecognized } from '@angular/router'
+import { Router, NavigationStart, NavigationError, NavigationEnd, RoutesRecognized } from '@angular/router'
 import { PageScrollService, PageScrollInstance } from 'ng2-page-scroll'
 import { DOCUMENT } from '@angular/platform-browser';
 import { ScrollService } from 'kio-ng2-scrolling'
@@ -61,11 +61,14 @@ export class NavigationService implements SitemapLoader {
 
 
   private resetPage ( ):void {
-    this.globalsService.hide()
     window.scrollTo(0,0)
   }
 
   private routerSubscription=this.router.events.subscribe ( ( event ) => {
+    if ( event instanceof NavigationStart && this.sitemapChapterService.config.pagingEnabled === true ) {
+      this.globalsService.hide()
+    }
+
     if ( event instanceof RoutesRecognized && this.sitemapChapterService.config.pagingEnabled === true ) {
       this.resetPage()
     }
@@ -79,14 +82,20 @@ export class NavigationService implements SitemapLoader {
     if ( event instanceof NavigationEnd ) {
       this.trackCurrentURL ()
       if ( this.sitemapChapterService.config.pagingEnabled ) {
-        this.globalsService.show()
+        setTimeout(()=>{
+          this.globalsService.show()
+        },500)
       }
     }
   } )
 
 
   private trackCurrentURL () {
-    this.angulartics2GoogleAnalytics.pageTrack(this.router.url)
+    try{
+      this.angulartics2GoogleAnalytics.pageTrack(this.router.url) 
+    } catch ( e ) {
+
+    }
   }
 
 }
