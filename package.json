@@ -66,18 +66,18 @@
     "@types/mocha": "^2.2.43",
     "@types/node": "^8.0.28",
     "cuid": "^1.3.8",
-    "kio-ng2-component-routing": "github:afkm/kio-ng2-component-routing",
-    "kio-ng2-ctn": "github:afkm/kio-ng2-ctn",
-    "kio-ng2-data": "github:afkm/kio-ng2-data",
-    "kio-ng2-globals": "github:afkm/kio-ng2-globals",
-    "kio-ng2-i18n": "github:afkm/kio-ng2-i18n",
-    "kio-ng2-image": "github:afkm/kio-ng2-image",
-    "kio-ng2-newsletter": "github:afkm/kio-ng2-newsletter",
-    "kio-ng2-scrolling": "github:afkm/kio-ng2-scrolling",
-    "kio-ng2-sidebar": "github:afkm/kio-ng2-sidebar",
-    "kio-ng2-sitemap": "github:afkm/kio-ng2-sitemap",
-    "kio-ng2-uiux": "github:afkm/kio-ng2-uiux",
-    "kio-ng2-lightbox": "github:afkm/kio-ng2-lightbox#v0.0.1",
+    "kio-ng2-component-routing": "gitlab:kio-ng2/component-routing#v0.1.5",
+    "kio-ng2-ctn": "gitlab:kio-ng2/ctn#v0.1.0",
+    "kio-ng2-data": "gitlab:kio-ng2/data#v0.0.1",
+    "kio-ng2-globals": "gitlab:kio-ng2/globals#v0.0.5",
+    "kio-ng2-i18n": "gitlab:kio-ng2/i18n#v0.0.3",
+    "kio-ng2-image": "gitlab:kio-ng2/image#v0.0.8",
+    "kio-ng2-newsletter": "gitlab:kio-ng2/newsletter#v0.0.4",
+    "kio-ng2-scrolling": "gitlab:kio-ng2/scrolling#v0.0.4",
+    "kio-ng2-sidebar": "gitlab:kio-ng2/sidebar#v0.0.3",
+    "kio-ng2-sitemap": "gitlab:kio-ng2/sitemap#v0.0.4",
+    "kio-ng2-uiux": "gitlab:kio-ng2/uiux#v0.0.6",
+    "kio-ng2-lightbox": "gitlab:kio-ng2/lightbox#v0.0.1",
     "mocha": "^3.5.3",
     "ng-inline-svg": "^3.0.0",
     "ng2-page-scroll": "^4.0.0-beta.9",
@@ -93,5 +93,16 @@
   },
   "dependencies": {
     "angulartics2": "^2.4.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/kio-ng2/navigation.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/kio-ng2/navigation/issues"
+  },
+  "homepage": "https://gitlab.com/kio-ng2/navigation#README"
 }
