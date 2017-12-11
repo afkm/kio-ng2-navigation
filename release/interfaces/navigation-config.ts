@@ -4,4 +4,6 @@ export interface NavigationConfig {
 
   testData?: TestDataRecord[]
 
+  debugging?: boolean
+
 }

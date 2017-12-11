@@ -104,7 +104,7 @@ export class ComponentBuilderComponent implements OnInit, OnDestroy {
   public ngOnInit () {
     this._componentData=this.componentRef.subscribe ( componentRef => {
 
-      console.log('component ref', componentRef )
+      //console.log('component ref', componentRef )
 
       this.component = componentRef
 

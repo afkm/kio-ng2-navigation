@@ -100,11 +100,23 @@ export class ComponentDataResolver implements Resolve<ComponentBuilderData> {
 
   }
 
+  protected fillContentType ( data:MockedContent ) {
+    if ( data.type ) {
+      return data.type
+    }
+
+    if ( data['children'] ) {
+      return 'fragment'
+    }
+
+    return 'txt'
+  }
+
   protected fillContentNode ( data:MockedContent ):KioContent {
 
     return {
       cuid: this.fillCuid(data),
-      type: data.type || 'txt',
+      type: this.fillContentType(data),
       locale: data.locale || 'de_DE',
       modifiers: (data.modifiers || []).slice(),
       headers: data.headers || {}
