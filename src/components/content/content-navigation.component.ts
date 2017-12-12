@@ -27,11 +27,9 @@ export class ContentNavigationComponent extends AbstractNavigationComponent {
   
   private sitemapServiceSubscription=this.navigationService.contentSitemapChapterPublications
   .subscribe ( (models) => {
-    if ( this.navigationService.sitemapChapterService.config.pagingEnabled === true ) {
-      this.chapterModels = models.slice()
-    } else {
-      this.chapterModels = models.slice()
-    }
+    this.chapterModels = models.slice()
+  }, error => {
+    console.error(`Failed to load content navigation. ${error}`)
   } )
   
 }
