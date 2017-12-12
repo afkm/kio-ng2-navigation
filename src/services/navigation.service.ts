@@ -44,7 +44,9 @@ export class NavigationService implements SitemapLoader {
   })
 
   public contentSitemapChapterPublications:Observable<KioPublicationModel[]>=this.contentSitemapChapters.concatMap ( (sitemapChapters:SitemapChapter[]) => {
-    return Observable.of(...sitemapChapters).concatMap ( sitemapChapter => {
+    console.log('sitemap chapters:', sitemapChapters)
+    return Observable.of(...sitemapChapters).concatMap ( (sitemapChapter,i) => {
+      console.log('sitemap chapter result %s:', i, sitemapChapter)
       return sitemapChapter.data.map ( result => result.data )
     } ).toArray()
   } )
