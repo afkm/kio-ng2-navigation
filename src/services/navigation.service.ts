@@ -8,6 +8,8 @@ import { DOCUMENT } from '@angular/platform-browser';
 import { ScrollService } from 'kio-ng2-scrolling'
 import { Angulartics2Module, Angulartics2, Angulartics2GoogleAnalytics } from 'angulartics2';
 import { GlobalsService } from 'kio-ng2-globals'
+import { KioPublicationModel } from 'kio-ng2-data'
+
 
 @Injectable()
 export class NavigationService implements SitemapLoader {
@@ -31,6 +33,21 @@ export class NavigationService implements SitemapLoader {
     this.trackCurrentURL () 
 
   }
+
+  public contentSitemapChapters:Observable<SitemapChapter[]>=Observable.defer(()=>{
+    if ( this.sitemapChapterService.config.pagingEnabled === true ) {
+      // single chapter emission
+      return this.sitemapChapterService.models.map ( model => [model] )
+    } else {
+      return this.sitemapChapterService.allModels
+    }    
+  })
+
+  public contentSitemapChapterPublications:Observable<KioPublicationModel[]>=this.contentSitemapChapters.concatMap ( (sitemapChapters:SitemapChapter[]) => {
+    return Observable.of(...sitemapChapters).concatMap ( sitemapChapter => {
+      return sitemapChapter.data.map ( result => result.data )
+    } ).toArray()
+  } )
 
   public gotoChapter <T extends MenuItem> ( menuItem:T ):Observable<T> {
     
