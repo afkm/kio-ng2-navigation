@@ -1,1 +1,1 @@
-<component-router *ngFor="let chapterModel of chapterModels; let chapterIndex = index" [node]="chapterModel" [class]="'chapter-'+chapterIndex"></component-router>
+<component-router *ngFor="let chapterModel of chapterModels; let chapterIndex = index" [node]="chapterModel" [class]="chapterClassResolver(chapterModel,chapterIndex)"></component-router>

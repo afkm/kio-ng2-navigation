@@ -53,12 +53,15 @@ export class ComponentBuilderFormService {
   } ).shareReplay(1)*/
 
   public setComponentName ( name:string ) {
-    this.router.navigateByUrl ( `/dev/${name}` ).then ( (success:boolean) => {
+    this.router.navigate ( ['dev',name] ).then ( (success:boolean) => {
       if ( isDevMode() ) {
-        console.log('did change component name in url', name)
+        const message = success ? 'did change component name in url' : 'did NOT change component name in url'
+        console.log(message, name)
       }
     } )
-    .catch ( console.error )
+    .catch ( error => {
+      console.error ( `Failed navigating to component building: ${error}` )
+    } )
   }
 
 

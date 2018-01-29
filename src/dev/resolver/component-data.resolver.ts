@@ -48,7 +48,7 @@ export class ComponentDataResolver implements Resolve<ComponentBuilderData> {
         node: this.testDataRecordToComponentData ( data[0] )
       })
     } else {
-      return Observable.never()
+      return Observable.throw(new Error(`Failed to select data for component "${componentName}". ${data.length} candidates`))
     }
     
   }
