@@ -3,8 +3,15 @@ import { Observable } from 'rxjs/Observable'
 import { DOCUMENT } from '@angular/platform-browser';
 import { AbstractNavigationComponent } from '../abstract-navigation/abstract-navigation.component'
 import { SitemapChapter } from 'kio-ng2-sitemap'
-import { KioPublicationModel } from 'kio-ng2-data'
+import { NavigationConfig } from '../../interfaces/navigation-config'
+import { ChapterClassResolver } from '../../interfaces/chapter-class-resolver'
+import { NAVIGATION_CONFIG } from '../../config.token'
+import { KioPublicationModel, KioFragment } from 'kio-ng2-data'
 import { PageScrollService, PageScrollInstance } from 'ng2-page-scroll'
+
+export function defaultChapterClassResolver ( node:KioFragment, index:number ):string {
+  return `chapter-${index}`
+}
 
 
 @Component({
@@ -16,6 +23,10 @@ import { PageScrollService, PageScrollInstance } from 'ng2-page-scroll'
   encapsulation: ViewEncapsulation.None
 })
 export class ContentNavigationComponent extends AbstractNavigationComponent {
+
+  public config:NavigationConfig=this.injector.get(NAVIGATION_CONFIG)
+
+  public chapterClassResolver:ChapterClassResolver=this.config.chapterClassResolver||defaultChapterClassResolver
 
   public pagingEnabled:boolean=this.navigationService.sitemapChapterService.config.pagingEnabled
 

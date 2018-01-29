@@ -31,7 +31,7 @@ import { ComponentBuilderComponent } from './dev/components/component-builder/co
 import { ComponentBuilderForm } from './dev/components/component-builder-form/component-builder-form.component'
 
 import { NavigationConfig } from './interfaces/navigation-config'
-
+import { NAVIGATION_CONFIG } from './config.token'
 
 import { RootNavigationComponent } from './components/root/root-navigation.component'
 import { ContentNavigationComponent } from './components/content/content-navigation.component'
@@ -122,6 +122,10 @@ export const DefaultProviders:Provider[] = [
     {
       provide: TEST_DATA,
       useValue: []
+    },
+    {
+      provide: NAVIGATION_CONFIG,
+      useValue: {}
     }
   ],
   exports: [
@@ -139,16 +143,23 @@ export class KioNg2NavigationModule {
 
   static forRoot ( config:NavigationConfig={} ):ModuleWithProviders {
     const withTestData:boolean = 'testData' in config
+    const chapterClassResolver = config.chapterClassResolver
+
+    const providers:Provider[] = [{
+      provide: NAVIGATION_CONFIG,
+      useValue: config
+    }]
+
+    if ( config.testData ) {
+      providers.push ( {
+        provide: TEST_DATA,
+        useValue: config.testData.slice()
+      } )
+    }
+
     return {
       ngModule: KioNg2NavigationModule,
-      providers: (
-        withTestData 
-          ? [ 
-            {
-              provide: TEST_DATA,
-              useValue: config.testData.slice()
-            } ] 
-          : [] )
+      providers
     }
   }
 
