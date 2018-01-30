@@ -7,8 +7,6 @@ import { NavigationConfig } from '../../interfaces/navigation-config'
 import { NAVIGATION_CONFIG } from '../../config.token'
 import { KioPublicationModel, KioFragment } from 'kio-ng2-data'
 import { PageScrollService, PageScrollInstance } from 'ng2-page-scroll'
-import { ChapterClassResolver } from '../../resolver/chapter-class.resolver'
-
 
 @Component({
   selector: 'navigation-content',
@@ -21,8 +19,6 @@ import { ChapterClassResolver } from '../../resolver/chapter-class.resolver'
 export class ContentNavigationComponent extends AbstractNavigationComponent {
 
   public config:NavigationConfig=this.injector.get(NAVIGATION_CONFIG)
-
-  public chapterClassResolver:ChapterClassResolver=this.injector.get(ChapterClassResolver)
 
   public pagingEnabled:boolean=this.navigationService.sitemapChapterService.config.pagingEnabled
 
