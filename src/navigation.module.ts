@@ -43,8 +43,6 @@ export const NavigationComponents = [ RootNavigationComponent, ContentNavigation
 
 export { NavigationService } from './services/navigation.service'
 export { ComponentBuilderService } from './services/component-builder.service'
-import { ChapterClassResolver } from './resolver/chapter-class.resolver'
-
 
 export const DefaultProviders:Provider[] = [
   Angulartics2, 
@@ -59,8 +57,7 @@ export const DefaultProviders:Provider[] = [
   ComponentBuilderService,
   ComponentBuilderFormService,
   ScrollService,
-  ComponentDataResolver,
-  ChapterClassResolver
+  ComponentDataResolver
 ]
 
 @NgModule({
