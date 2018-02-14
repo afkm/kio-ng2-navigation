@@ -119,7 +119,8 @@ export class ComponentDataResolver implements Resolve<ComponentBuilderData> {
       type: this.fillContentType(data),
       locale: data.locale || 'de_DE',
       modifiers: (data.modifiers || []).slice(),
-      headers: data.headers || {}
+      headers: data.headers || {},
+      data: data.data || undefined
     }
 
   }
