@@ -12,6 +12,8 @@ export interface MockedContent {
 
   modifiers?: string[]
 
+  data?: any
+
 }
 
 
